@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather API</title>
+    <link rel="stylesheet" href="app.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/joi@17.11.0/dist/joi-browser.min.js"></script>
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div id="controls">
+        <form action="">
+          <input
+            type="text"
+            placeholder="Enter a town, city or UK postcode"
+            id="location"
+          />
+        </form>
+        <button id="getLocation">
+          <img src="images/button.svg" alt="location" width="24px" />
+        </button>
+      </div>
+      <div id="error"></div>
+      <div id="description"></div>
+      <div id="time"></div>
+      <div id="info"></div>
+      <div id="day"></div>
+    </div>
+  </body>
+</html>
