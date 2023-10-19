@@ -15,13 +15,13 @@ export const getUserWeather = async () => {
       await schema.validateAsync({ location: locationInput });
       errorRef.innerHTML = ``;
       const { data } = await axios.get(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${locationInput}, GB&limit=1&appid=19a91654c2866453d454714d0821523a`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${locationInput}, GB&limit=1&appid=19a91654c2866453d454714d0821523a`
       );
 
       if (data.length > 0) {
         const { lat, lon } = data[0];
         const weather = await axios.get(
-          `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=19a91654c2866453d454714d0821523a`
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=19a91654c2866453d454714d0821523a`
         );
         setInterface(weather.data);
         errorRef.innerHTML = `<p class="success">result found:</p>`;

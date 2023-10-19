@@ -48,7 +48,7 @@ export const createWeatherItem = (item) => {
       hour12: true,
     })}
     </h2>
-    <img src="http://openweathermap.org/img/wn/${
+    <img src="https://openweathermap.org/img/wn/${
       item.weather[0].icon
     }.png" alt="${item.weather[0].description}">
     <h3>${Math.round(item.main.temp - 271.15)}&deg;</h3>
@@ -61,7 +61,7 @@ export const createDayItem = (item) => {
       weekday: "short",
     })}
     </h2>
-    <img src="http://openweathermap.org/img/wn/${
+    <img src="https://openweathermap.org/img/wn/${
       item.weather[0].icon
     }.png" alt="${item.weather[0].description}">
     <p>${Math.round(item.main.temp_max - 271.15)}&deg; ${Math.round(
