@@ -78,6 +78,12 @@ form input {
 #left,
 #right {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+
+.temp h2 {
+  font-size: 50px;
+  margin: 0;
 }

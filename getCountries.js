@@ -14,8 +14,11 @@ export const getRandomCountries = async () => {
     const randWeather2 = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${rand2.latlng[0]}&lon=${rand2.latlng[1]}&appid=19a91654c2866453d454714d0821523a`
     );
-    console.log(randWeather1, randWeather2);
-    gameInterface(rand1, rand2);
+    // console.log(
+    //   Math.round(randWeather1.data.list[0].main.temp - 273.15),
+    //   Math.round(randWeather2.data.list[0].main.temp - 273.15)
+    // );
+    gameInterface(rand1, rand2, randWeather1, randWeather2);
   } catch (e) {
     console.log("error:", e);
   }
