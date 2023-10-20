@@ -60,3 +60,24 @@ form input {
   color: black;
   font-weight: 600;
 }
+
+#container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#container div {
+  margin-right: 20px;
+}
+
+#game h1 {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+#left,
+#right {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
