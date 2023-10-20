@@ -3,6 +3,7 @@ import { getRandomCountries } from "./getCountries.js";
 const leftSideRef = document.getElementById("left");
 const rightSideRef = document.getElementById("right");
 const gameRef = document.getElementById("game");
+const wholeGameRef = document.getElementById("wholeGame");
 
 export const gameInterface = (
   countryOne,
@@ -21,22 +22,28 @@ export const gameInterface = (
   const random = Math.floor(Math.random() * 4);
   switch (random) {
     case 0:
-      answers.question = "Which country has the higher temperature right now?";
-      answers.left = infoOne.list[0].main.temp + " &deg;C";
-      answers.right = infoTwo.list[0].main.temp + " &deg;C";
+      answers.question =
+        "Which country has the <strong>higher</strong> temperature right now?";
+      answers.left = Math.round(infoOne.list[0].main.temp - 273.15) + " &deg;C";
+      answers.right =
+        Math.round(infoTwo.list[0].main.temp - 273.15) + " &deg;C";
       break;
-    case 1:
-      answers.question = "Which country has the lowest temperature right now?";
-      answers.left = infoTwo.list[0].main.temp + " &deg;C";
-      answers.right = infoOne.list[0].main.temp + " &deg;C";
+    case 1: // ******BUGGY CODE**********
+      answers.question =
+        "Which country has the <strong>lowest</strong> temperature right now?";
+      answers.left = Math.round(infoTwo.list[0].main.temp - 273.15) + " &deg;C";
+      answers.right =
+        Math.round(infoOne.list[0].main.temp - 273.15) + " &deg;C";
       break;
     case 2:
-      answers.question = "Which country has higher humidity right now?";
+      answers.question =
+        "Which country has <strong>higher</strong> humidity right now?";
       answers.left = infoOne.list[0].main.humidity + " %";
       answers.right = infoTwo.list[0].main.humidity + " %";
       break;
     case 3:
-      answers.question = "Which country has higher wind speeds right now?";
+      answers.question =
+        "Which country has <strong>higher</strong> wind speeds right now?";
       answers.left = infoOne.list[0].wind.speed + " MPH";
       answers.right = infoTwo.list[0].wind.speed + " MPH";
       break;
@@ -61,11 +68,17 @@ export const gameInterface = (
   leftSideRef.addEventListener("click", () => {
     if (answered === false) {
       showTemp();
-      if (answers.left > answers.right) {
-        console.log("You win");
+      if (answers.left === answers.right) {
+        leftSideRef.classList.add("win");
+      } else if (answers.left > answers.right) {
+        leftSideRef.classList.add("win");
+      } else {
+        leftSideRef.classList.add("lose");
       }
       setTimeout(() => {
         getRandomCountries();
+        leftSideRef.classList.remove("win");
+        leftSideRef.classList.remove("lose");
       }, 3000);
     }
   });
@@ -73,11 +86,18 @@ export const gameInterface = (
   rightSideRef.addEventListener("click", () => {
     if (answered === false) {
       showTemp();
-      if (answers.left < answers.right) {
-        console.log("You win");
+      if (answers.left === answers.right) {
+        rightSideRef.classList.add("win");
+      } else if (answers.left < answers.right) {
+        rightSideRef.classList.add("win");
+      } else {
+        rightSideRef.classList.add("lose");
       }
+
       setTimeout(() => {
         getRandomCountries();
+        rightSideRef.classList.remove("win");
+        rightSideRef.classList.remove("lose");
       }, 3000);
     }
   });
@@ -87,17 +107,11 @@ export const gameInterface = (
     const clickedLeft = document.createElement("div");
     clickedLeft.classList.add("temp");
     leftSideRef.appendChild(clickedLeft);
+    clickedLeft.innerHTML = `<h2>${answers.left}</h2>`;
 
-    clickedLeft.innerHTML = `<h2>${Math.round(
-      infoOne.list[0].main.temp - 273.15
-    )}&deg;C</h2>`;
     const clickedRight = document.createElement("div");
     clickedRight.classList.add("temp");
     rightSideRef.appendChild(clickedRight);
-
-    clickedRight.innerHTML = `<h2>${Math.round(
-      infoTwo.list[0].main.temp - 273.15
-    )}&deg;C
-      </h2>`;
+    clickedRight.innerHTML = `<h2>${answers.right}</h2>`;
   };
 };
