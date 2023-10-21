@@ -1,9 +1,15 @@
 import { getRandomCountries } from "./getCountries.js";
+import { startGameRef } from "./script.js";
 
 const leftSideRef = document.getElementById("left");
 const rightSideRef = document.getElementById("right");
 const gameRef = document.getElementById("game");
 const wholeGameRef = document.getElementById("wholeGame");
+const scoreRef = document.getElementById("score");
+
+let score = 0;
+// let timer;
+// let intialTimer = 60;
 
 export const gameInterface = (
   countryOne,
@@ -68,12 +74,19 @@ export const gameInterface = (
       showTemp();
       if (answers.left === answers.right) {
         leftSideRef.classList.add("win");
+        scoreCounter();
       } else if (answers.left > answers.right) {
         leftSideRef.classList.add("win");
-        console.log("win");
+        scoreCounter();
       } else {
         leftSideRef.classList.add("lose");
-        console.log("lose");
+        localStorage.setItem("highscore", `${score}`);
+        score = 0;
+        scoreRef.innerHTML = `<p>Score: ${score}</p>`;
+        setTimeout(() => {
+          hideGame();
+          startGameRef.classList.add("show");
+        }, 1000);
       }
       setTimeout(() => {
         getRandomCountries();
@@ -88,12 +101,19 @@ export const gameInterface = (
       showTemp();
       if (answers.left === answers.right) {
         rightSideRef.classList.add("win");
+        scoreCounter();
       } else if (answers.left < answers.right) {
         rightSideRef.classList.add("win");
-        console.log("win");
+        scoreCounter();
       } else {
         rightSideRef.classList.add("lose");
-        console.log("lose");
+        localStorage.setItem("highscore", `${score}`);
+        score = 0;
+        scoreRef.innerHTML = `<p>Score: ${score}</p>`;
+        setTimeout(() => {
+          hideGame();
+          startGameRef.classList.add("show");
+        }, 1000);
       }
       setTimeout(() => {
         getRandomCountries();
@@ -103,7 +123,7 @@ export const gameInterface = (
     }
   });
 
-  console.log(infoOne, infoTwo, answers.left, answers.right);
+  console.log(answers.left, answers.right);
 
   const showTemp = () => {
     answered = true;
@@ -117,4 +137,19 @@ export const gameInterface = (
     rightSideRef.appendChild(clickedRight);
     clickedRight.innerHTML = `<h2>${answers.right}</h2>`;
   };
+
+  const scoreCounter = () => {
+    score++;
+    scoreRef.innerHTML = `<p>Score: ${score}</p>`;
+  };
+};
+
+const hideGame = () => {
+  wholeGameRef.classList.add("hidden");
+  wholeGameRef.classList.remove("show");
+};
+
+export const showGame = () => {
+  wholeGameRef.classList.add("show");
+  wholeGameRef.classList.remove("hidden");
 };

@@ -51,7 +51,7 @@ export const createWeatherItem = (item) => {
     <img src="https://openweathermap.org/img/wn/${
       item.weather[0].icon
     }.png" alt="${item.weather[0].description}">
-    <h3>${Math.round(item.main.temp - 271.15)}&deg;</h3>
+    <h3>${Math.round(item.main.temp - 273.15)}&deg;</h3>
  </div>`;
 };
 
@@ -64,8 +64,8 @@ export const createDayItem = (item) => {
     <img src="https://openweathermap.org/img/wn/${
       item.weather[0].icon
     }.png" alt="${item.weather[0].description}">
-    <p>${Math.round(item.main.temp_max - 271.15)}&deg; ${Math.round(
-    item.main.temp_min - 271.15
+    <p>${Math.round(item.main.temp_max - 273.15)}&deg; ${Math.round(
+    item.main.temp_min - 273.15
   )}&deg;</p>
  </div>`;
 };
