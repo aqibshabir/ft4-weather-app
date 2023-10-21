@@ -21,37 +21,35 @@ export const gameInterface = (
   const answers = {};
   const random = Math.floor(Math.random() * 4);
   switch (random) {
-    case 0:
+    case 0: // ******BUGGY CODE**********
       answers.question =
-        "Which country has the <strong>higher</strong> temperature right now?";
+        "Which country has the <span>higher temperature</span> right now?";
       answers.left = Math.round(infoOne.list[0].main.temp - 273.15) + " &deg;C";
       answers.right =
         Math.round(infoTwo.list[0].main.temp - 273.15) + " &deg;C";
       break;
     case 1: // ******BUGGY CODE**********
       answers.question =
-        "Which country has the <strong>lowest</strong> temperature right now?";
+        "Which country has the <span>lowest temperature</span> right now?";
       answers.left = Math.round(infoTwo.list[0].main.temp - 273.15) + " &deg;C";
       answers.right =
         Math.round(infoOne.list[0].main.temp - 273.15) + " &deg;C";
       break;
     case 2:
       answers.question =
-        "Which country has <strong>higher</strong> humidity right now?";
+        "Which country has <span>higher humidity</span> right now?";
       answers.left = infoOne.list[0].main.humidity + " %";
       answers.right = infoTwo.list[0].main.humidity + " %";
       break;
     case 3:
       answers.question =
-        "Which country has <strong>higher</strong> wind speeds right now?";
+        "Which country has <span>higher wind speeds</span> right now?";
       answers.left = infoOne.list[0].wind.speed + " MPH";
       answers.right = infoTwo.list[0].wind.speed + " MPH";
       break;
     default:
       break;
   }
-
-  console.log(infoOne, infoTwo);
 
   gameRef.innerHTML = `<div>
                             <h1>${answers.question}</h1>
@@ -72,8 +70,10 @@ export const gameInterface = (
         leftSideRef.classList.add("win");
       } else if (answers.left > answers.right) {
         leftSideRef.classList.add("win");
+        console.log("win");
       } else {
         leftSideRef.classList.add("lose");
+        console.log("lose");
       }
       setTimeout(() => {
         getRandomCountries();
@@ -90,10 +90,11 @@ export const gameInterface = (
         rightSideRef.classList.add("win");
       } else if (answers.left < answers.right) {
         rightSideRef.classList.add("win");
+        console.log("win");
       } else {
         rightSideRef.classList.add("lose");
+        console.log("lose");
       }
-
       setTimeout(() => {
         getRandomCountries();
         rightSideRef.classList.remove("win");
@@ -101,6 +102,8 @@ export const gameInterface = (
       }, 3000);
     }
   });
+
+  console.log(infoOne, infoTwo, answers.left, answers.right);
 
   const showTemp = () => {
     answered = true;

@@ -4,7 +4,6 @@ import { gameInterface } from "./gameInterface.js";
 export const getRandomCountries = async () => {
   const rand1 = countries[Math.floor(Math.random() * countries.length)];
   const rand2 = countries[Math.floor(Math.random() * countries.length)];
-  console.log(rand1, rand2);
 
   try {
     //get random countries with data
