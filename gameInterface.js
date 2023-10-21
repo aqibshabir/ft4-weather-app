@@ -3,9 +3,10 @@ import { startGameRef } from "./script.js";
 
 const leftSideRef = document.getElementById("left");
 const rightSideRef = document.getElementById("right");
-const gameRef = document.getElementById("game");
+const titleRef = document.getElementById("title");
 const wholeGameRef = document.getElementById("wholeGame");
 const scoreRef = document.getElementById("score");
+const containerRef = document.getElementById("container");
 
 let score = 0;
 // let timer;
@@ -57,7 +58,7 @@ export const gameInterface = (
       break;
   }
 
-  gameRef.innerHTML = `<div>
+  titleRef.innerHTML = `<div>
                             <h1>${answers.question}</h1>
                         </div>`;
   leftSideRef.innerHTML = `<div>
@@ -144,12 +145,16 @@ export const gameInterface = (
   };
 };
 
-const hideGame = () => {
+export const hideGame = () => {
   wholeGameRef.classList.add("hidden");
   wholeGameRef.classList.remove("show");
+  containerRef.classList.add("hidden");
+  containerRef.classList.remove("show");
 };
 
 export const showGame = () => {
   wholeGameRef.classList.add("show");
   wholeGameRef.classList.remove("hidden");
+  containerRef.classList.add("show");
+  containerRef.classList.remove("hidden");
 };

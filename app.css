@@ -70,37 +70,56 @@ form input {
   margin-right: 20px;
 }
 
-#game h1 {
+#title h1 {
   text-align: center;
+  font-size: 50px;
+  font-weight: 800;
   margin-bottom: 100px;
+  color: rgb(28, 176, 246);
 }
 
-#left,
-#right {
+.leftContent,
+.rightContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  height: 500px;
+  width: 250px;
+  border: 3px solid rgb(197, 197, 197);
+  border-bottom: 8px solid rgb(197, 197, 197);
+  border-radius: 30px;
 }
 
 .temp h2 {
   font-size: 50px;
   margin: 0;
+  color: black;
 }
 
-#left:hover,
-#right:hover {
-  border: 1px solid rgb(114, 114, 114);
-  border-radius: 30px;
+.leftContent:hover,
+.rightContent:hover {
+  background-color: rgb(226, 225, 225);
   cursor: pointer;
 }
 
 .win {
   background-color: greenyellow;
+  border: 3px solid rgb(114, 168, 32);
+  border-bottom: 8px solid rgb(114, 168, 32);
+}
+.win:hover {
+  background-color: rgb(217, 253, 163);
 }
 
 .lose {
   background-color: orangered;
+  border: 3px solid rgb(156, 43, 2);
+  border-bottom: 8px solid rgb(156, 43, 2);
+}
+
+.lose:hover {
+  background-color: rgb(253, 140, 98);
 }
 
 .hidden {
