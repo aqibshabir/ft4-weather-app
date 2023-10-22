@@ -1,5 +1,5 @@
 import { getRandomCountries } from "./getCountries.js";
-import { startGameRef } from "./script.js";
+import { showOrHide, startGameRef } from "./script.js";
 
 const leftSideRef = document.getElementById("left");
 const rightSideRef = document.getElementById("right");
@@ -68,7 +68,7 @@ export const gameInterface = (
   }
 
   titleRef.innerHTML = `<div>
-                            <h1>${answers.question}</h1>
+                            <h2>${answers.question}</h2>
                         </div>`;
   leftSideRef.innerHTML = `<div>
                             <img src="${link}${flagOne}.svg" width="200" alt"${countryOne.name}"/>
@@ -115,6 +115,7 @@ export const gameInterface = (
           rightSideRef.classList.remove("win", "lose");
           hideGame();
           startGameRef.classList.add("show");
+          showOrHide();
         }, 2000);
       }
     }
@@ -156,6 +157,7 @@ export const gameInterface = (
           rightSideRef.classList.remove("win", "lose");
           hideGame();
           startGameRef.classList.add("show");
+          showOrHide();
         }, 1999);
       }
     }

@@ -5,8 +5,8 @@ import { hideGame, showGame } from "./gameInterface.js";
 
 const getLocationRef = document.getElementById("getLocation");
 export const startGameRef = document.getElementById("startGame");
+export const containerButtonRef = document.getElementById("containerButton");
 const menu = document.querySelector(".menu");
-const menuItems = document.querySelectorAll(".menuItem");
 const hamburger = document.querySelector(".hamburger");
 const closeIcon = document.querySelector(".closeIcon");
 const menuIcon = document.querySelector(".menuIcon");
@@ -19,9 +19,11 @@ getUserWeather();
 hideGame();
 
 startGameRef.addEventListener("click", () => {
+  showOrHide();
   showGame();
   getRandomCountries();
   startGameRef.classList.add("hidden");
+  containerButtonRef.classList.add("hidden");
 });
 
 function toggleMenu() {
@@ -33,6 +35,21 @@ function toggleMenu() {
     menu.classList.add("showMenu");
     closeIcon.style.display = "block";
     menuIcon.style.display = "none";
+  }
+}
+
+const showButton = () => {
+  document.getElementById("containerButton").style.display = "block";
+};
+const hideButton = () => {
+  document.getElementById("containerButton").style.display = "none";
+};
+
+export function showOrHide() {
+  if (mainTitle.style.display === "block") {
+    showButton();
+  } else {
+    hideButton();
   }
 }
 
