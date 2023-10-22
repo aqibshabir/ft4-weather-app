@@ -27,7 +27,7 @@ export const gameInterface = (
   const answers = {};
   let isHigher = true;
   const random = Math.floor(Math.random() * 4);
-  switch (1) {
+  switch (random) {
     case 0:
       answers.question =
         "Which country has the <span>higher temperature</span> right now?";
@@ -35,8 +35,9 @@ export const gameInterface = (
       answers.right = Math.floor(
         Math.round(infoTwo.list[0].main.temp - 273.15)
       );
+      answers.unit = " &deg;C";
       break;
-    case 1: // ******BUGGY CODE**********
+    case 1:
       answers.question =
         "Which country has the <span>lowest temperature</span> right now?";
       answers.left = Math.floor(Math.round(infoTwo.list[0].main.temp - 273.15));
@@ -44,19 +45,21 @@ export const gameInterface = (
         Math.round(infoOne.list[0].main.temp - 273.15)
       );
       isHigher = false;
-      console.log(answers);
+      answers.unit = " &deg;C";
       break;
     case 2:
       answers.question =
         "Which country has <span>higher humidity</span> right now?";
-      answers.left = Math.floor(infoOne.list[0].main.humidity);
-      answers.right = Math.floor(infoTwo.list[0].main.humidity);
+      answers.left = infoOne.list[0].main.humidity;
+      answers.right = infoTwo.list[0].main.humidity;
+      answers.unit = " %";
       break;
     case 3:
       answers.question =
         "Which country has <span>higher wind speeds</span> right now?";
-      answers.left = Math.floor(infoOne.list[0].wind.speed);
-      answers.right = Math.floor(infoTwo.list[0].wind.speed);
+      answers.left = infoOne.list[0].wind.speed;
+      answers.right = infoTwo.list[0].wind.speed;
+      answers.unit = " MPH";
       break;
     default:
       break;
@@ -79,26 +82,35 @@ export const gameInterface = (
       showTemp();
       if (answers.left === answers.right) {
         leftSideRef.classList.add("win");
+        rightSideRef.classList.add("win");
         scoreCounter();
+        setTimeout(() => {
+          getRandomCountries();
+          leftSideRef.classList.remove("win", "lose");
+          rightSideRef.classList.remove("win", "lose");
+        }, 2000);
       } else if (answers.left > answers.right) {
         leftSideRef.classList.add("win");
+        rightSideRef.classList.add("lose");
         scoreCounter();
+        setTimeout(() => {
+          getRandomCountries();
+          leftSideRef.classList.remove("win", "lose");
+          rightSideRef.classList.remove("win", "lose");
+        }, 2000);
       } else {
         leftSideRef.classList.add("lose");
+        rightSideRef.classList.add("win");
         localStorage.setItem("highscore", `${score}`);
-        // highScoreRef.innerHTML = `<p>${localStorage.getItem(${score})}</p>`;
         score = 0;
         scoreRef.innerHTML = `<p>Score: ${score}</p>`;
         setTimeout(() => {
+          leftSideRef.classList.remove("win", "lose");
+          rightSideRef.classList.remove("win", "lose");
           hideGame();
           startGameRef.classList.add("show");
-        }, 1000);
+        }, 2000);
       }
-      setTimeout(() => {
-        getRandomCountries();
-        leftSideRef.classList.remove("win");
-        leftSideRef.classList.remove("lose");
-      }, 3000);
     }
   });
 
@@ -107,44 +119,55 @@ export const gameInterface = (
       showTemp();
       if (answers.left === answers.right) {
         rightSideRef.classList.add("win");
+        leftSideRef.classList.add("win");
         scoreCounter();
+        setTimeout(() => {
+          getRandomCountries();
+          leftSideRef.classList.remove("win", "lose");
+          rightSideRef.classList.remove("win", "lose");
+        }, 2000);
       } else if (answers.left < answers.right) {
         rightSideRef.classList.add("win");
+        leftSideRef.classList.add("lose");
         scoreCounter();
+        setTimeout(() => {
+          getRandomCountries();
+          leftSideRef.classList.remove("win", "lose");
+          rightSideRef.classList.remove("win", "lose");
+        }, 2000);
       } else {
         rightSideRef.classList.add("lose");
+        leftSideRef.classList.add("win");
         localStorage.setItem("highscore", `${score}`);
         score = 0;
         scoreRef.innerHTML = `<p>Score: ${score}</p>`;
         setTimeout(() => {
+          leftSideRef.classList.remove("win", "lose");
+          rightSideRef.classList.remove("win", "lose");
           hideGame();
           startGameRef.classList.add("show");
-        }, 1000);
+        }, 1999);
       }
-      setTimeout(() => {
-        getRandomCountries();
-        rightSideRef.classList.remove("win");
-        rightSideRef.classList.remove("lose");
-      }, 3000);
     }
   });
 
-  console.log(answers.left, answers.right, infoOne, infoTwo);
+  console.log(answers.left, answers.right);
 
   const showTemp = () => {
     answered = true;
+
     const clickedLeft = document.createElement("div");
     clickedLeft.classList.add("temp");
     leftSideRef.appendChild(clickedLeft);
     clickedLeft.innerHTML = `<h2>${
-      isHigher ? answers.left : answers.right
+      isHigher ? answers.left + answers.unit : answers.right + answers.unit
     }</h2>`;
 
     const clickedRight = document.createElement("div");
     clickedRight.classList.add("temp");
     rightSideRef.appendChild(clickedRight);
     clickedRight.innerHTML = `<h2>${
-      isHigher ? answers.right : answers.left
+      isHigher ? answers.right + answers.unit : answers.left + answers.unit
     }</h2>`;
   };
 
