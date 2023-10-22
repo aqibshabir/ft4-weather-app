@@ -6,11 +6,10 @@ const rightSideRef = document.getElementById("right");
 const titleRef = document.getElementById("title");
 const wholeGameRef = document.getElementById("wholeGame");
 const scoreRef = document.getElementById("score");
+const highScoreRef = document.getElementById("highScore");
 const containerRef = document.getElementById("container");
 
 let score = 0;
-// let timer;
-// let intialTimer = 60;
 
 export const gameInterface = (
   countryOne,
@@ -27,32 +26,35 @@ export const gameInterface = (
   let answered = false;
   const answers = {};
   const random = Math.floor(Math.random() * 4);
-  switch (random) {
-    case 0: // ******BUGGY CODE**********
+  switch (1) {
+    case 0:
       answers.question =
         "Which country has the <span>higher temperature</span> right now?";
-      answers.left = Math.round(infoOne.list[0].main.temp - 273.15) + " &deg;C";
-      answers.right =
-        Math.round(infoTwo.list[0].main.temp - 273.15) + " &deg;C";
+      answers.left = Math.floor(Math.round(infoOne.list[0].main.temp - 273.15));
+      answers.right = Math.floor(
+        Math.round(infoTwo.list[0].main.temp - 273.15)
+      );
       break;
     case 1: // ******BUGGY CODE**********
       answers.question =
         "Which country has the <span>lowest temperature</span> right now?";
-      answers.left = Math.round(infoTwo.list[0].main.temp - 273.15) + " &deg;C";
-      answers.right =
-        Math.round(infoOne.list[0].main.temp - 273.15) + " &deg;C";
+      answers.left = Math.floor(Math.round(infoTwo.list[0].main.temp - 273.15));
+      answers.right = Math.floor(
+        Math.round(infoOne.list[0].main.temp - 273.15)
+      );
+      console.log(answers);
       break;
     case 2:
       answers.question =
         "Which country has <span>higher humidity</span> right now?";
-      answers.left = infoOne.list[0].main.humidity + " %";
-      answers.right = infoTwo.list[0].main.humidity + " %";
+      answers.left = Math.floor(infoOne.list[0].main.humidity);
+      answers.right = Math.floor(infoTwo.list[0].main.humidity);
       break;
     case 3:
       answers.question =
         "Which country has <span>higher wind speeds</span> right now?";
-      answers.left = infoOne.list[0].wind.speed + " MPH";
-      answers.right = infoTwo.list[0].wind.speed + " MPH";
+      answers.left = Math.floor(infoOne.list[0].wind.speed);
+      answers.right = Math.floor(infoTwo.list[0].wind.speed);
       break;
     default:
       break;
@@ -82,6 +84,7 @@ export const gameInterface = (
       } else {
         leftSideRef.classList.add("lose");
         localStorage.setItem("highscore", `${score}`);
+        highScoreRef.innerHTML = ``;
         score = 0;
         scoreRef.innerHTML = `<p>Score: ${score}</p>`;
         setTimeout(() => {
@@ -124,7 +127,7 @@ export const gameInterface = (
     }
   });
 
-  console.log(answers.left, answers.right);
+  console.log(answers.left, answers.right, infoOne, infoTwo);
 
   const showTemp = () => {
     answered = true;
