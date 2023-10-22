@@ -25,6 +25,7 @@ export const gameInterface = (
   const infoTwo = countryinfoTwo.data;
   let answered = false;
   const answers = {};
+  let isHigher = true;
   const random = Math.floor(Math.random() * 4);
   switch (1) {
     case 0:
@@ -42,6 +43,7 @@ export const gameInterface = (
       answers.right = Math.floor(
         Math.round(infoOne.list[0].main.temp - 273.15)
       );
+      isHigher = false;
       console.log(answers);
       break;
     case 2:
@@ -84,7 +86,7 @@ export const gameInterface = (
       } else {
         leftSideRef.classList.add("lose");
         localStorage.setItem("highscore", `${score}`);
-        highScoreRef.innerHTML = ``;
+        // highScoreRef.innerHTML = `<p>${localStorage.getItem(${score})}</p>`;
         score = 0;
         scoreRef.innerHTML = `<p>Score: ${score}</p>`;
         setTimeout(() => {
@@ -134,12 +136,16 @@ export const gameInterface = (
     const clickedLeft = document.createElement("div");
     clickedLeft.classList.add("temp");
     leftSideRef.appendChild(clickedLeft);
-    clickedLeft.innerHTML = `<h2>${answers.left}</h2>`;
+    clickedLeft.innerHTML = `<h2>${
+      isHigher ? answers.left : answers.right
+    }</h2>`;
 
     const clickedRight = document.createElement("div");
     clickedRight.classList.add("temp");
     rightSideRef.appendChild(clickedRight);
-    clickedRight.innerHTML = `<h2>${answers.right}</h2>`;
+    clickedRight.innerHTML = `<h2>${
+      isHigher ? answers.right : answers.left
+    }</h2>`;
   };
 
   const scoreCounter = () => {
