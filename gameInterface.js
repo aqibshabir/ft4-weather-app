@@ -27,6 +27,8 @@ export const gameInterface = (
   const answers = {};
   let isHigher = true;
   const random = Math.floor(Math.random() * 4);
+  let highScore = getHighScore();
+
   switch (random) {
     case 0:
       answers.question =
@@ -101,7 +103,11 @@ export const gameInterface = (
       } else {
         leftSideRef.classList.add("lose");
         rightSideRef.classList.add("win");
-        localStorage.setItem("highscore", `${score}`);
+        if (score > highScore) {
+          highScore = score;
+          localStorage.setItem("highscore", highScore);
+          highScoreRef.innerHTML = `<p>High Score: ${highScore}</p>`;
+        }
         score = 0;
         scoreRef.innerHTML = `<p>Score: ${score}</p>`;
         setTimeout(() => {
@@ -138,7 +144,11 @@ export const gameInterface = (
       } else {
         rightSideRef.classList.add("lose");
         leftSideRef.classList.add("win");
-        localStorage.setItem("highscore", `${score}`);
+        if (score > highScore) {
+          highScore = score;
+          localStorage.setItem("highscore", highScore);
+          highScoreRef.innerHTML = `<p>High Score: ${highScore}</p>`;
+        }
         score = 0;
         scoreRef.innerHTML = `<p>Score: ${score}</p>`;
         setTimeout(() => {
@@ -150,8 +160,6 @@ export const gameInterface = (
       }
     }
   });
-
-  console.log(answers.left, answers.right);
 
   const showTemp = () => {
     answered = true;
@@ -190,3 +198,13 @@ export const showGame = () => {
   containerRef.classList.add("show");
   containerRef.classList.remove("hidden");
 };
+
+export function getHighScore() {
+  let highScore = localStorage.getItem("highscore");
+  if (highScore === null) {
+    highScore = 0;
+  } else {
+    highScore = parseInt(highScore, 10);
+  }
+  return highScore;
+}

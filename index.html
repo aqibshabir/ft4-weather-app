@@ -10,25 +10,33 @@
     <script type="module" src="script.js"></script>
   </head>
   <body>
-    <div id="root">
-      <div id="controls">
-        <form action="">
-          <input
-            type="text"
-            placeholder="Enter a town, city or UK postcode"
-            id="location"
-          />
-        </form>
-        <button id="getLocation">
-          <img src="images/button.svg" alt="location" width="24px" />
-        </button>
+    <div class="menu">
+      <div id="root" class="menuItem">
+        <div id="controls">
+          <form action="">
+            <input
+              type="text"
+              placeholder="Enter a town, city or UK postcode"
+              id="location"
+            />
+          </form>
+          <button id="getLocation">
+            <img src="images/button.svg" alt="location" width="24px" />
+          </button>
+        </div>
+        <div id="error"></div>
+        <div id="description"></div>
+        <div id="time"></div>
+        <div id="info"></div>
+        <div id="day"></div>
       </div>
-      <div id="error"></div>
-      <div id="description"></div>
-      <div id="time"></div>
-      <div id="info"></div>
-      <div id="day"></div>
     </div>
+    <button class="hamburger">
+      <i class="menuIcon"
+        ><img src="images/menu.svg" alt="menu" width="50px"
+      /></i>
+      <i class="closeIcon"><img src="images/cross.svg" menu width="50px" /></i>
+    </button>
     <div>
       <button id="startGame">Start Game</button>
     </div>
@@ -39,7 +47,7 @@
         <div id="right" class="contentStyle rightContent"></div>
       </div>
       <div id="score"></div>
+      <div id="highScore"></div>
     </div>
-    <div id="highScore"></div>
   </body>
 </html>
