@@ -4,7 +4,13 @@
 
 > A weather application taking in data from Open Weather Map's API
 
-## Version
+## Versions
+
+### [v2](https://frolicking-sunshine-c0ab9e.netlify.app/)
+
+In this version(live-demo above) I've implemented the weather API to make a small quiz style game - based on the current weather data around the world. Questions touch on 3 main topics - temperature, wind speed and humidity.
+
+I've taken the previous version and added a toggle menu, in which you can see UK specific weather data as before - stylised now into a widget.
 
 ### [v1](https://effulgent-biscochitos-a1337e.netlify.app/)
 
@@ -15,22 +21,18 @@ The first version (live-demo above) is the **bare-bones weather application** th
 
 ---
 
-### Thought process for v2
+### v3?
 
-**1:**
+If I were to develop this further:
 
-I want to make conclusions from the data to give this application depth (for it to do more than just retrieve data from an API).
+1. I'd start by opening up the weather data so that you can view the data for the entire world.
 
-> A comment to the above point - I am thinking to take this into the direction of a very **basic game** of Higher or Lower. Using broswer API (localstorage) to store a high-score - if possible.
+2. I'd add conclusions to the weather data - such as: what it currently feels like or a weather map showing percipitation/wind.
 
-**2:**
+3. I'd also make it so that by clicking certain days - it will dynamically open up specific weather data for that day
 
-Alongside this game, I'd like to present this weather data in a more polished way. That means a responsive design - for phone, tablet and desktops.
+4. I'd make improvements to the game. So that at the end of the game, the high score data that I'm currently storing in local storage can be stored under a certain name - adding a leaderboard and possibly a game-over screen.
 
-**3:**
-
-I'd like to make the weather data interactive using vanilla JS to achieve DOM manipulation to make it a more of an intuitive user experience.
-
-Essentially this app must be more than just a boring weather app - it needs some **personality**!
+5. I'd also stylise it more like a weather app, the styling currently looks a bit ambiguous.
 
 ---
