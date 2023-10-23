@@ -1,6 +1,7 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  overflow: hidden;
 }
 
 #time,
@@ -8,8 +9,13 @@
   display: flex;
 }
 
-#time > div,
-#day > div {
+#time h2,
+#time h3 {
+  font-size: 20px;
+  text-align: center;
+}
+
+#time > div {
   padding-right: 30px;
   display: flex;
   flex-direction: column;
@@ -18,7 +24,33 @@
 }
 
 #day > div {
-  padding-right: 40px;
+  padding-bottom: 10px;
+}
+
+#day > div:nth-of-type(1):hover {
+  border-top: 3px solid rgb(255, 189, 113);
+  background-color: rgba(255, 255, 255, 0.034);
+  cursor: pointer;
+}
+#day > div:nth-of-type(2):hover {
+  border-top: 3px solid rgb(255, 189, 113);
+  background-color: rgba(255, 255, 255, 0.034);
+  cursor: pointer;
+}
+#day > div:nth-of-type(3):hover {
+  border-top: 3px solid rgb(255, 189, 113);
+  background-color: rgba(255, 255, 255, 0.034);
+  cursor: pointer;
+}
+#day > div:nth-of-type(4):hover {
+  border-top: 3px solid rgb(255, 189, 113);
+  background-color: rgba(255, 255, 255, 0.034);
+  cursor: pointer;
+}
+#day > div:nth-of-type(5):hover {
+  border-top: 3px solid rgb(255, 189, 113);
+  background-color: rgba(255, 255, 255, 0.034);
+  cursor: pointer;
 }
 
 #info > div {
@@ -89,7 +121,7 @@ form input {
   border-bottom: 8px solid 10px 5px 5px red;
   border-radius: 30px;
   background-color: rgba(115, 145, 243, 0.37);
-  box-shadow: 0px 10px 15px #363b88;
+  box-shadow: 5px 10px 15px #363b8844;
 }
 
 .temp h2 {
@@ -177,7 +209,7 @@ form input {
 }
 
 .mainTitle {
-  margin-top: 30px;
+  margin-top: 18px;
   font-size: 40px;
   color: #001fa7;
   text-align: center;
@@ -225,14 +257,6 @@ form input {
   transform: scale(0.95);
 }
 
-#containerButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 75vh;
-}
-
 .gameInfo:hover {
   color: rgb(201, 199, 199);
   cursor: help;
@@ -251,6 +275,7 @@ form input {
 
 #container {
   margin-top: 70px;
+  padding-bottom: 30px;
 }
 
 .scoreContainer {
@@ -277,9 +302,19 @@ body {
   margin-left: 10px;
 }
 
-.containerWeather p,
-.containerWeather h2 {
+.containerWeather #description {
   margin-left: 10px;
+  margin-top: 5px;
+}
+
+#description p,
+#description h2 {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.containerWeather #time {
+  margin-left: 20px;
   margin-top: 5px;
 }
 
@@ -293,8 +328,30 @@ body {
 }
 
 #day div {
-  margin-bottom: 10px;
   width: 130px;
   display: flex;
   justify-content: center;
+}
+
+#info div {
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+#day > div {
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#containerButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 75vh;
 }

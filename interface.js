@@ -26,8 +26,8 @@ export const setInterface = (weather) => {
   {
     const list = weather.list[0];
     info.innerHTML = `<div>
-                        <p>Humidity:<strong>${list.main.humidity}%</strong></p>
-                        <p>Wind:<strong>${list.wind.speed}MPH</strong></p>
+                        <p>Humidity: <strong>${list.main.humidity}%</strong></p>
+                        <p>Wind: <strong>${list.wind.speed}MPH</strong></p>
                       </div>`;
   }
   {

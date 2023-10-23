@@ -19,7 +19,7 @@ getUserWeather();
 hideGame();
 
 startGameRef.addEventListener("click", () => {
-  showOrHide();
+  hideButton();
   showGame();
   getRandomCountries();
   startGameRef.classList.add("hidden");
@@ -38,19 +38,12 @@ function toggleMenu() {
   }
 }
 
-const showButton = () => {
-  document.getElementById("containerButton").style.display = "block";
+export const showButton = () => {
+  document.getElementById("containerButton").style.display = "flex";
+  containerButtonRef.classList.remove("hidden");
 };
-const hideButton = () => {
+export const hideButton = () => {
   document.getElementById("containerButton").style.display = "none";
 };
-
-export function showOrHide() {
-  if (mainTitle.style.display === "block") {
-    showButton();
-  } else {
-    hideButton();
-  }
-}
 
 hamburger.addEventListener("click", toggleMenu);

@@ -1,5 +1,5 @@
 import { getRandomCountries } from "./getCountries.js";
-import { showOrHide, startGameRef } from "./script.js";
+import { showButton, startGameRef } from "./script.js";
 
 const leftSideRef = document.getElementById("left");
 const rightSideRef = document.getElementById("right");
@@ -114,8 +114,8 @@ export const gameInterface = (
           leftSideRef.classList.remove("win", "lose");
           rightSideRef.classList.remove("win", "lose");
           hideGame();
+          showButton();
           startGameRef.classList.add("show");
-          showOrHide();
         }, 2000);
       }
     }
@@ -156,8 +156,8 @@ export const gameInterface = (
           leftSideRef.classList.remove("win", "lose");
           rightSideRef.classList.remove("win", "lose");
           hideGame();
+          showButton();
           startGameRef.classList.add("show");
-          showOrHide();
         }, 1999);
       }
     }
